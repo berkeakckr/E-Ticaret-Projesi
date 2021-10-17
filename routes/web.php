@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AnasayfaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'AnasayfaController@index')->name('anasayfa');
+//Route::get('/', 'App\Http\Controllers\AnasayfaController@index')->name('anasayfa');
+Route::get('/', [AnasayfaController::class,'index'])->name('anasayfa');
 
+Route::get('/kategori/{slug_kategoriadi}', 'KategoriController@index')->name('kategori');
+Route::get('/urun/{slug_urunadi}', 'UrunController@index')->name('urun');
+Route::view('/kategori','kategori' );
+//Route::view('/urun','urun' );
+//Route::view('/sepet','sepet' );
 /*
  Route::get('/merhaba', function () {
     return 'yarak';
