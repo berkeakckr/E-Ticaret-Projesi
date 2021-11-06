@@ -564,7 +564,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
+    max-width: inherit;
   }
 }
 .row {
@@ -3987,7 +3987,7 @@ input[type=button].btn-block {
 
 .navbar-nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -10141,4 +10141,8 @@ a {
   background-color: #fff;
   padding: 50px;
   margin-top: 20px;
+}
+#commerce .container {
+  display: flex;
+  /* or inline-flex */
 }

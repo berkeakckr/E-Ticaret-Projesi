@@ -1,24 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnasayfaController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\UrunController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SepetController;
+use App\Http\Controllers\SiparisController;
+use App\Http\Controllers\KullaniciController;
+
+
 
 //Route::get('/', 'App\Http\Controllers\AnasayfaController@index')->name('anasayfa');
+Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
+Route::post('/admin',[AdminController::class,'createPost'])->name('admin.create.post');
 Route::get('/', [AnasayfaController::class,'index'])->name('anasayfa');
 
-Route::get('/kategori/{slug_kategoriadi}', 'KategoriController@index')->name('kategori');
-Route::get('/urun/{slug_urunadi}', 'UrunController@index')->name('urun');
-Route::view('/kategori','kategori' );
+Route::get('/kategori/{slug_kategoriadi}', 'App\Http\Controllers\KategoriController@index')->name('kategori');
+Route::get('/urun', 'App\Http\Controllers\UrunController@index')->name('urun');
+Route::get('/sepet', 'App\Http\Controllers\SepetController@index')->name('sepet');
+Route::get('/odeme', 'App\Http\Controllers\OdemeController@index')->name('odeme');
+Route::get('/siparisler', 'App\Http\Controllers\SiparisController@index')->name('siparisler');
+Route::get('/siparisler/{id}', 'App\Http\Controllers\SiparisController@detay')->name('siparis');
+Route::group(['prefix'=>'kullanici'], function(){
+
+Route::get('/oturumac', 'App\Http\Controllers\KullaniciController@giris_form')->name('kullanici.oturumac');
+Route::get('/kaydol', 'App\Http\Controllers\KullaniciController@kaydol_form')->name('kullanici.kaydol');
+});
+
+
 //Route::view('/urun','urun' );
 //Route::view('/sepet','sepet' );
 /*
