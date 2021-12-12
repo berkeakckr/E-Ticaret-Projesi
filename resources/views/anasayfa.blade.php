@@ -1,8 +1,11 @@
 @extends('layouts.master')
 @section('title','Anasayfa')
 @section('content')
-    <div class="container">
-        <div class="row">
+   @include('layouts.partials.alert')
+
+    <div class="container ml-3">
+
+        <div class="row ml-5">
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">Kategoriler</div>

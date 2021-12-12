@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
            //$this->call(UrunTableSeeder::class);
         $this->call(KategoriTableSeeder::class);
+        $this->call(UrunTableSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

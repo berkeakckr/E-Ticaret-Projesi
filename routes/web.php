@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kullanici;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnasayfaController;
@@ -22,12 +23,18 @@ Route::get('/sepet', 'App\Http\Controllers\SepetController@index')->name('sepet'
 Route::get('/odeme', 'App\Http\Controllers\OdemeController@index')->name('odeme');
 Route::get('/siparisler', 'App\Http\Controllers\SiparisController@index')->name('siparisler');
 Route::get('/siparisler/{id}', 'App\Http\Controllers\SiparisController@detay')->name('siparis');
+
 Route::group(['prefix'=>'kullanici'], function(){
-
-Route::get('/oturumac', 'App\Http\Controllers\KullaniciController@giris_form')->name('kullanici.oturumac');
+Route::get('/oturumac', 'App\Http\Controllers\KullaniciController@giris_form')->name('kullanici.oturumac'); //adres satırında açtığımız andaki tanımlamasına get diyoruz
 Route::get('/kaydol', 'App\Http\Controllers\KullaniciController@kaydol_form')->name('kullanici.kaydol');
-});
+Route::post('/kaydol', 'App\Http\Controllers\KullaniciController@kaydol')->name('kullanici.kaydol');//kaydolma işleminde sonra verileri gönderdiğimiz anda yapmasını istediğimiz kodların olduğu root tanımını ifade eder
+    Route::get('/aktiflestir/{anahtar}', 'App\Http\Controllers\KullaniciController@aktiflestir')->name('aktiflestir');
 
+});
+Route::get('test/mail',function(){
+    $kullanici=Kullanici::find(1);
+     return new App\Mail\KullaniciKayitMail($kullanici);
+});
 
 //Route::view('/urun','urun' );
 //Route::view('/sepet','sepet' );
