@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
+use App\Models\Urun;
 class KategoriController extends Controller
 {
     public function index($slug_kategoriadi){
        $kategori =  Kategori::where('slug',$slug_kategoriadi)->firstOrFail(); //Kayıt bulunamazsa 404 hatası vermeye yarar
         $alt_kategoriler =  Kategori::where('ust_id',$kategori->id)->get();
-        return view('kategori',compact('kategori','alt_kategoriler'));
+        $urunler=$kategori->urunler;
+        return view('kategori',compact('kategori','alt_kategoriler','urunler'));
     }
 }

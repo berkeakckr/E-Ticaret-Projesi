@@ -22,7 +22,7 @@ class CreateSepetTable extends Migration
             $table->timestamp('guncelleme_tarihi')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             //$table->softDeletes();
             $table->timestamp('silinme_tarihi')->nullable();
-            $table->foreign('kullanici_id')->references('id')->on('kullanici');
+            $table->foreign('kullanici_id')->references('id')->on('kullanici')->onDelete('cascade');
         });
     }
 

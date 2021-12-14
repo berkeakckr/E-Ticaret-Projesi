@@ -18,7 +18,7 @@ Route::post('/admin',[AdminController::class,'createPost'])->name('admin.create.
 Route::get('/', [AnasayfaController::class,'index'])->name('anasayfa');
 
 Route::get('/kategori/{slug_kategoriadi}', 'App\Http\Controllers\KategoriController@index')->name('kategori');
-Route::get('/urun', 'App\Http\Controllers\UrunController@index')->name('urun');
+Route::get('/urun/{slug_urunadi}', 'App\Http\Controllers\UrunController@index')->name('urun');
 Route::get('/sepet', 'App\Http\Controllers\SepetController@index')->name('sepet');
 Route::get('/odeme', 'App\Http\Controllers\OdemeController@index')->name('odeme');
 Route::get('/siparisler', 'App\Http\Controllers\SiparisController@index')->name('siparisler');
