@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class KategoriTableSeeder extends Seeder
 {
-    //php artisan db:seed yapamadım !!!!!!!!!!!!!!!!!
-    //App\Models\Kategori::create(['kategori_adi'=>'Test 2' , 'slug'=>'test 2']) çalışmadı
+
     /**
      * Run the database seeds.
      *
@@ -16,7 +15,7 @@ class KategoriTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Kategori')->truncate();
+        //DB::table('Kategori')->truncate();
         $id = DB::table('Kategori')->insertGetId(['kategori_adi'=>'Elektronik', 'slug'=>'elektronik']);
         DB::table('Kategori')->insert(['kategori_adi'=>'Bilgisayar/Tablet', 'slug'=>'bilgisayar-tablet',
             'ust_id'=>$id]);

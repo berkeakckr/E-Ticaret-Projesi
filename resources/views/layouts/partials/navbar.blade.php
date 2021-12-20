@@ -9,14 +9,15 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{route('anasayfa')}}">
-                <img src="/img/logo.png">
+                <img src="/img/BAKAL.jpg" width="210" height="210">
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="{{route('urun_ara')}}" method="post">
+                {{csrf_field() }} <!-- post metodunun çalışması için kullanılır-->
                 <div class="input-group">
-                    <input type="text" id="navbar-search" class="form-control" placeholder="Ara">
+                    <input type="text" name="aranan" id="navbar-search" class="form-control" placeholder="Ara">
                     <span class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-search"></i>
