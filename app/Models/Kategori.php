@@ -18,8 +18,9 @@ class Kategori extends Model
     const UPDATED_AT = "guncelleme_tarihi";
     const DELETED_AT = "silinme_tarihi";
     public function urunler(){
-        return $this->belongsToMany('App\Models\Urun','kategori_urun');
+        return $this->belongsToMany('App\Models\Urun','category_product');
     }
+
 }
-//App\Models\Kategori::create(['kategori_adi'=>'Test 2' , 'slug'=>'test 2']) çalışmadı
+
 

@@ -1,91 +1,185 @@
 
 @extends('layouts.master')
-@section('title',$kategori->kategori_adi)
+@section('title',$kategori->title)
 @section('content')
-    <div class="row container ml-5">
-         <div class="col-md-2 ml-5">
-             <ol class="breadcrumb">
-                 <li><a href="{{route('anasayfa')}}">Anasayfa</a></li>
-                 <li><a href="#">Kategori</a></li>
-                 <li class="active">
-                     {{$kategori->kategori_adi}}
-                 </li>
-                 <div class="mt-5 panel panel-default">
-                     <div class="panel-heading">{{$kategori->kategori_adi}}</div>
-                     <div class="panel-body">
-                         <h3>Alt Kategoriler</h3>
-                         <div class="list-group categories">
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb-tree">
+                        <li><a href="{{route('anasayfa')}}">Anasayfa</a></li>
+                        <li><a href="{{route('kategori',$kategori->slug)}}">{{$kategori->title}}</a></li>
 
-                             @foreach($alt_kategoriler as $alt_kategori)
-
-                                 <a href="{{route('kategori',$alt_kategori->slug) }}"
-                                    class="list-group-item">
-
-                                     <i class="fa fa-arrow-circle-right"></i>
-
-                                     {{$alt_kategori->kategori_adi}}
-                                 </a>
-                             @endforeach
-
-                         </div>
-
-                     </div>
-                 </div>
-             </ol>
-         </div>
-        <div class="row col-md-9">
-            <div class="col-md-3">
-                <div hidden class="panel panel-default">
-                    <div class="panel-heading">{{$kategori->kategori_adi}}</div>
-                    <div class="panel-body">
-                        @if (count($alt_kategoriler)>0)
-
-                        <h3>Alt Kategoriler</h3>
-                        <div hidden class="list-group categories">
-
-                            @foreach($alt_kategoriler as $alt_kategori)
-
-                            <a href="{{route('kategori',$alt_kategori->slug) }}"
-                               class="list-group-item">
-
-                                <i class="fa fa-arrow-circle-right"></i>
-
-                                {{$alt_kategori->kategori_adi}}
-                            </a>
-                            @endforeach
-                        </div>
-                        @else
-                        Bu kategoride başka alt kategori bulunmamaktadır.
-                            @endif
-
-                    </div>
+                        <li><a href="{{route('kategori',$kategori->slug)}}">{{$kategori->title}}</a></li>
+{{--                        <li class="active">Headphones (227,490 Results)</li>--}}
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="products bg-content">
-
-                    <div class="row">
-                        @if (count($urunler)>0)
-                            Sırala
-                            <a href="#" class="btn btn-default">Çok Satanlar</a>
-                            <a href="#" class="btn btn-default">Yeni Ürünler</a>
-                            <hr>
-                        @endif
-                        @if (count($urunler)==0)
-                            <div class="col-md-12">Bu kategoride henüz ürün bulunmamaktadır.</div>
-                            @endif
-                        @foreach($urunler as $urun )
-                        <div class="col-md-3 product">
-                            <a href="{{route('urun',$urun->slug)}}"><img src="http://via.placeholder.com/400x400?text=UrunResmi"></a>
-                            <p><a href="{{route('urun',$urun->slug)}}">{{$urun->urun_adi}}</a></p>
-                            <p class="price">{{$urun->fiyati}} ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                       @endforeach
-                    </div>
-                </div>
-            </div>
+            <!-- /row -->
         </div>
+        <!-- /container -->
     </div>
-    @endsection
+    <!-- /BREADCRUMB -->
+
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- ASIDE -->
+                <div id="aside" class="col-md-3">
+                    <!-- aside Widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Alt Kategoriler</h3>
+                        <div class="checkbox-filter">
+
+                            <div class="input-checkbox">
+
+                                <input type="checkbox"  id="category-1">
+                                @foreach($alt_kategoriler as $alt_kategori)
+
+                                <label for="category-1">
+                                    <span></span>
+                                    <a href="{{route('kategori',$alt_kategori->slug)}}"></a>
+                                    {{$alt_kategori->title}}
+                                    <small> {{count(array($alt_kategori))}}</small>
+                                </label>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /aside Widget -->
+
+                    <!-- aside Widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Price</h3>
+                        <div class="price-filter">
+                            <div id="price-slider"></div>
+                            <div class="input-number price-min">
+                                <input id="price-min" type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                            <span>-</span>
+                            <div class="input-number price-max">
+                                <input id="price-max" type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /aside Widget -->
+
+                    <!-- aside Widget -->
+
+                    <!-- /aside Widget -->
+
+                    <!-- aside Widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Top selling</h3>
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="./img/product01.png" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">Category</p>
+                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /aside Widget -->
+                </div>
+                <!-- /ASIDE -->
+
+                <!-- STORE -->
+                <div id="store" class="col-md-9">
+                    <!-- store top filter -->
+                    <div class="store-filter clearfix">
+                        <div class="store-sort">
+                            <label>
+                                Sort By:
+                                <select class="input-select">
+                                    <option value="0">Popular</option>
+                                    <option value="1">Position</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Show:
+                                <select class="input-select">
+                                    <option value="0">20</option>
+                                    <option value="1">50</option>
+                                </select>
+                            </label>
+                        </div>
+                        <ul class="store-grid">
+                            <li class="active"><i class="fa fa-th"></i></li>
+                            <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /store top filter -->
+
+                    <!-- store products -->
+                    <div class="row">
+                    @foreach($products as $urun )
+                        <!-- product -->
+                        <div class="col-md-4 col-xs-6">
+                            <div class="product">
+
+                                <div class="product-img">
+                                    <img src="{{asset($urun->image)}}" alt="">
+                                    <div class="product-label">
+                                        <span class="sale">-30%</span>
+                                        <span class="new">NEW</span>
+                                    </div>
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">{{$urun->get_altCategory->title}}</p>
+                                    <h3 class="product-name"><a href="{{route('urun',$urun->slug)}}">{{$urun->title}}</a></h3>
+                                    <h4 class="product-price">{{$urun->price}}₺</h4>
+                                </div>
+                                <div class="add-to-cart">
+                                    <form action="{{route('sepet.ekle')}}" method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="id" value="{{$urun->id}}">
+                                        <input type="submit" class="add-to-cart-btn"  value="Sepete Ekle"><i class="fa fa-shopping-cart"></i>
+{{--                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Sepete Ekle</button>--}}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                        <!-- /product -->
+
+                    </div>
+                    <!-- /store products -->
+
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+                        <span class="store-qty">Showing 20-100 products</span>
+                        <ul class="store-pagination">
+                            <li class="active">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /store bottom filter -->
+                </div>
+                <!-- /STORE -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+
+@endsection
 

@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{config('app.locale')}}">
-<head>
-    <meta charset="UTF-8">
-    <title>@yield('title',config('app.name'))</title>
-    @include('layouts.partials.head')
-    @yield('head')
-</head>
-<body id="commerce">
+@include('layouts.partials.head')
 @include('layouts.partials.navbar')
 @yield('content')
 @include('layouts.partials.footer')
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-@yield('footer')
-</body>
-</html>
-
+<script src="{{asset('front/js/jquery.min.js')}}"></script>
+<script src="{{asset('front/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('front/js/slick.min.js')}}"></script>
+<script src="{{asset('front/js/nouislider.min.js')}}"></script>
+<script src="{{asset('front/js/jquery.zoom.min.js')}}"></script>
+<script src="{{asset('front/js/main.js')}}"></script>
