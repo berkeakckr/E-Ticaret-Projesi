@@ -27,7 +27,8 @@ class UrunTableSeeder extends Seeder
                 'urun_adi'=>$faker->title,
                 'slug'=>$faker->title,
                 'aciklama'=>$faker->sentence(20),
-                'fiyati'=>$faker->randomFloat(3,1,20)//Bir ve 20 arasında 3 ve 1 arası  basamaklı sayılar oluşturur
+                'fiyati'=>$faker->randomFloat(3,1,20),//Bir ve 20 arasında 3 ve 1 arası  basamaklı sayılar oluşturur
+                'eski_fiyati'=>$faker->randomFloat(3,1,20)//Bir ve 20 arasında 3 ve 1 arası  basamaklı sayılar oluşturur
             ]);
                      $detay = $urun->detay()->create([
                          'goster_slider'=>rand(0,1),
